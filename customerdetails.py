@@ -19,7 +19,6 @@ def InputCustomerdata():
     "BILL_AMT4":None,
     "BILL_AMT5":None,
     "BILL_AMT6":None,
-    "PAY_AMT0":None,
     "PAY_AMT1":None,
     "PAY_AMT2":None,
     "PAY_AMT3":None,
@@ -28,7 +27,7 @@ def InputCustomerdata():
     "PAY_AMT6":None}
 
 
-    # Basic Customer detail Extraction
+    # Basic Customer Detail Extraction
     Customer_details["LIMIT_BAL"]=int(input("Enter Customer's Limit Balance:"))
     Customer_details["AGE"]=int(input("Enter Customer's Age :"))
     Customer_details["EDUCATION"]=int(input("Enter Customer's Education Status (1 = graduate school; 2 = university; 3 = high school; 4 = others).:"))
@@ -44,8 +43,9 @@ def InputCustomerdata():
         if i!=0:
             key=f"BILL_AMT{i}"
             Customer_details[key]=int(input(f"Enter Bill Amount of last {i+1} month: "))
-        key=f"PAY_AMT{i}"
-        Customer_details[key]=int(input(f"Enter Payment Amount of last {i+1} month: "))
+            key=f"PAY_AMT{i}"
+            Customer_details[key]=int(input(f"Enter Payment Amount of last {i+1} month: "))
+
     # Conversion to DataFrame
     Customer_df=pd.DataFrame([Customer_details])
     return Customer_df

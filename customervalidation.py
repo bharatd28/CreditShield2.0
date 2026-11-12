@@ -18,7 +18,7 @@ def Validate_customer(Customer_df):
     if Customer_df.isnull().any().any():
         print("Null values present")
         return False
-    if Age<18 and Age>100:
+    if Age<18 or Age>100:
         print("Customer age less than 18")
         return False
     if  Limit_Balance<=0:
@@ -36,20 +36,20 @@ def Validate_customer(Customer_df):
          
     for i in range(7):
         key=f"PAY_{i}"
-        if Customer_df[key].iloc[0]<-2 and Customer_df [key].iloc[0]>9:
-            print("repayment status of last {i+1} month is invalid")
-            return False
+        if i!=1:
+            if Customer_df[key].iloc[0]<-2 or Customer_df [key].iloc[0]>9:
+                print("repayment status of last {i+1} month is invalid")
+                return False
 
-        key=f"BILL_AMT{i}"
-        if Customer_df[key].iloc[0]<0:
-            print("Bill Amount of last {i+1} month is invalid")
-            return False
-
-
-        key=f"PAY_AMT{i}"
-        if Customer_df[key].iloc[0]<0:
-            print("Payment Amount of last {i+1} month is invalid")
-            return False
+        if i!=0:
+            key=f"BILL_AMT{i}"
+            if Customer_df[key].iloc[0]<0:
+                print("Bill Amount of last {i+1} month is invalid")
+                return False
+            key=f"PAY_AMT{i}"
+            if Customer_df[key].iloc[0]<0:
+                print("Payment Amount of last {i+1} month is invalid")
+                return False
 
          
 
